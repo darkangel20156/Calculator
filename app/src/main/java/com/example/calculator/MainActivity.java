@@ -9,11 +9,11 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private TextView calculation, result;
-    private String current, res;
-    private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
-    private Button btnAC, btnDel, btnDivide, btnMinus, btnMultiply, btnPlus, btnEquals, btnDot;
-    private boolean dot_inserted = false, operator_inserted;
+    private TextView calculation, result; /* Calculation view and result view */
+    private String current, res;          /* current variable and res variable ~ char current on calculation and result after calculating */
+    private Button btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9; /* 10 buttons ~ number 0 -> 9 */
+    private Button btnAC, btnDel, btnDivide, btnMinus, btnMultiply, btnPlus, btnEquals, btnDot; /* 4 operator buttons, button Dot (.) and button Equals (=) */
+    private boolean dot_inserted = false, operator_inserted; /* flag dot_inserted and operator_inserted to check char dot and operator existed? */
 
 
     @Override
@@ -21,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        calculation = findViewById(R.id.calculation);
-        result = findViewById(R.id.result);
-
         current = "";
         res = "";
         dot_inserted = false;
         operator_inserted = false;
+
+        calculation = findViewById(R.id.calculation);
+        result = findViewById(R.id.result);
 
         btn0 = findViewById(R.id.button_0);
         btn1 = findViewById(R.id.button_1);
@@ -276,7 +276,12 @@ public class MainActivity extends AppCompatActivity {
                             res = Double.toString(Double.parseDouble(tokens[0]) * Double.parseDouble(tokens[2]));
                             break;
                         case '÷':
-                            res = Double.toString(Double.parseDouble(tokens[0]) / Double.parseDouble(tokens[2]));
+                            if (!tokens[2].equals('0')) {
+                                res = Double.toString(Double.parseDouble(tokens[0]) / Double.parseDouble(tokens[2]));
+                            }
+                            else {
+                                res = "ERROR!";
+                            }
                             break;
                     }
                     displayTwo();
