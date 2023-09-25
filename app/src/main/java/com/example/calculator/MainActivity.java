@@ -276,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
                             res = Double.toString(Double.parseDouble(tokens[0]) * Double.parseDouble(tokens[2]));
                             break;
                         case '÷':
-                            if (!tokens[2].equals('0')) {
+                            if (tokens[2].compareTo("0") != 0) {
                                 res = Double.toString(Double.parseDouble(tokens[0]) / Double.parseDouble(tokens[2]));
                             }
                             else {
